@@ -1,25 +1,21 @@
-<form class="form-horizontal">
+<form class="form-horizontal" >
 <fieldset>
 
-<!-- Form Name -->
-<legend>Add your Donation</legend>
-
-<!-- Text input-->
-<div class="form-group" id="donation_form">
-  <label class="col-md-4 control-label" for="Donor Name">Donor Name</label>
-  <div class="col-md-5">
-  <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
-
-  </div>
-</div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Address ">Address</label>
-  <div class="col-md-5">
-  <input id="pickup_address" name="pickup_address" type="text" placeholder="Address" class="form-control input-md">
+  <label class="col-md-4 control-label" for="Donor Name">Donor Name</label>
+    <div class="col-md-5">
+      <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
+    </div>
+</div>
 
-  </div>
+<!-- Text input-->
+<div class="form-group" id="addressLabel">
+  <label  class="col-md-4 control-label" for="Address ">Address</label>
+    <div class="col-md-5">
+      <input id="pickup_address" name="pickup_address" type="text" placeholder="Address" class="form-control input-md">
+    </div>
 </div>
 
 <!-- Text input-->
@@ -30,7 +26,6 @@
 
   </div>
 </div>
-
 
 <!-- Select Basic -->
 <div class="form-group">
@@ -62,15 +57,15 @@
 
 <!-- Textarea -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Description">Description</label>
+  <label class="col-md-4 control-label" for="item_description">Description</label>
   <div class="col-md-4">
-    <textarea class="item_description" id="item_description" name="Description"></textarea>
+    <textarea class="form-control" id="item_description" name="item_description"></textarea>
   </div>
 </div>
 
 <!-- Button -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="singlebutton">Add Donations</label>
+  <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
     <button id="singlebutton" name="singlebutton" class="btn btn-primary">Add Donations</button>
   </div>
