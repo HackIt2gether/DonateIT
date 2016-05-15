@@ -9,7 +9,9 @@ html, body {
       height: 100%;
     }
 #donation_form {
-  background-color: transparent;
+  /*background-color: transparent;*/
+  background:#7f7f7f;
+  background:rgba(0,0,0,0.5);
   padding: 20px;
   display: none;
   z-index: 50;

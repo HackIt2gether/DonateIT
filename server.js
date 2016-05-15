@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const db = require('./db/db_donors');
 
 // routes
-const donationsRoutes = require(path.join(__dirname, '/routes/donations'));
+const donationRoutes = require(path.join(__dirname, '/routes/donations'));
 
 const app = express();
 
@@ -24,8 +24,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // routes
-app.use('/donations', donationsRoutes )
-
+app.use('/donations', donationRoutes )
 
 // set public path
 app.use( express.static( path.join( __dirname, 'public' )));
