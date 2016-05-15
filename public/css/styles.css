@@ -1,5 +1,6 @@
 html, body {
       height: 100%;
+      background-color: #021019;
       margin: 0;
       padding: 0;
     }
@@ -8,8 +9,9 @@ html, body {
       height: 100%;
     }
 #donation_form {
-  background-color: black;
+  background-color: transparent;
   padding: 2em;
+  display: none;
 }
 
 #logo {
@@ -20,6 +22,7 @@ html, body {
 
 .menu_item {
   font-size: 20px;
+  text-decoration: none;
   color: orange;
   font-family: Aclonica;
 }

@@ -120,7 +120,7 @@ var styles = [
         ]
     },
     {
-        "featureType": "transit",
+        "featureType": "transit.line",
         "elementType": "all",
         "stylers": [
             {
