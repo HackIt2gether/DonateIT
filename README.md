@@ -1,14 +1,14 @@
 # DonateIT
 Hack it together one day project.
 
-# Mission
+# Mission Statement
 
-- DonateIT is a platform that matches donators with charities.
+- DonateIT is a platform that matches donators with charities
 
-# User Stories:
--  As a user, I should be able to see a welcome page.
--  As a user, I should be able to add my staff to the map.
--  As a charity, I should be able to see the people who are ready to donate.
--  As a user, I should be able to see a form that I can enter name, email, address, items, message
-- As a user, I should be able to see a new marker on the map  after I add my staff.
-- BONUS - set up a user auth.
+# User Stories
+-  As a user, I should be able to see a welcome page
+-  As a user, I should be able to add a pick up location for my donations
+-  As a charity, I should be able to see the pick locations and people who are ready to donate
+-  As a user, I should be able to see a form that I can enter name, email, address, items to be donated
+- As a user, I should be able to see a new marker on the map  after I add my donation description
+- BONUS - set up user registration where you can register as a donor or as charity
