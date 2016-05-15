@@ -14,13 +14,16 @@ $( document ).ready(function() {
       let $category = $('#category').val();
       let $item_description = $('#item_description').val();
 
-      let newDonation = {
-        name: $name,
-        email: $email,
-        pickup_address: $pickup_address,
-        category: $category,
-        item_description: $item_description
-      };
+  getdonations();
+
+  $('.form-horizontal').submit((e) => {
+    // e.preventDefault();
+    // html elements
+    let $name = $('#name').val();
+    let $email = $('#email').val();
+    let $pickup_address = $('#pickup_address').val();
+    let $category = $('#category').val();
+    let $item_description = $('#item_description').val();
 
       $.post('/donations', newDonation)
         .done((data) => {
@@ -33,3 +36,15 @@ $( document ).ready(function() {
     })
 
 }); // end of document load
+
+
+function getdonations(){
+ $.get('/donations')
+  .done( (data) => {
+      localStorage.clear();
+      localStorage.donateit = JSON.stringify(data);
+  })
+  .fail( () => {
+    console.error('You have failed this homework!!!!!!!!!');
+  });
+}

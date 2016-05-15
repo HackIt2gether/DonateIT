@@ -8,11 +8,12 @@ const db = require('../db/db_donors');
 
 // add a donation but keep on the same page
 donations.post('/', db.addDonation, (req, res) => {
-  res.redirect('/');
+
 });
 
 donations.get('/', db.allDonations, (req, res) => {
-  res.render('all_donations')
+   res.send(res.rows);
 });
+
 
 module.exports = donations;

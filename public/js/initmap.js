@@ -141,8 +141,9 @@ var styles = [
         ]
     }
 ]
+var map;
 function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 40.7713451, lng: -73.9882315},
     styles: styles,
     scrollwheel: false,
@@ -160,14 +161,14 @@ function initMap() {
         lng: position.coords.longitude
       };
       map.setCenter(currentPosition)
-      var marker = new google.maps.Marker({
+        cMarker = new google.maps.Marker({
         map: map,
         draggable: true,
         position: currentPosition,
         animation: google.maps.Animation.DROP,
         icon: '../img/pinkdot.png'
       });
-      marker.addListener('click', toggleBounce);
+      cMarker.addListener('click', toggleBounce);
     },
     function() {
       handleLocationError(true, marker, map.getCenter());
@@ -175,7 +176,7 @@ function initMap() {
   }else {
     // Browser doesn't support Geolocation
     handleLocationError(false, marker, map.getCenter());
-  }
+  } // end navigator geolocation
 
 
   // address autocomplete for pick up address
@@ -183,14 +184,14 @@ function initMap() {
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
 
-  var marker = new google.maps.Marker({
+  var pMarker = new google.maps.Marker({
     map: map,
     anchorPoint: new google.maps.Point(0, -29)
   });
   var infowindow = new google.maps.InfoWindow();
   autocomplete.addListener('place_changed', function() {
     infowindow.close();
-    marker.setVisible(false);
+    pMarker.setVisible(false);
     var place = autocomplete.getPlace();
     if (!place.geometry) {
       window.alert("Autocomplete's returned place contains no geometry");
@@ -204,15 +205,15 @@ function initMap() {
       map.setCenter(place.geometry.location);
       map.setZoom(17);  // Why 17? Because it looks good.
     }
-    marker.setIcon(/** @type {google.maps.Icon} */({
+    pMarker.setIcon(/** @type {google.maps.Icon} */({
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(17, 34),
       animation: google.maps.Animation.DROP,
       url: '../img/bluedot.png'
 
     }));
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
+    pMarker.setPosition(place.geometry.location);
+    pMarker.setVisible(true);
 
     var address = '';
     if (place.address_components) {
@@ -224,19 +225,75 @@ function initMap() {
     }
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-    infowindow.open(map, marker);
+    infowindow.open(map, pMarker);
+
+    google.maps.event.addListener(pMarker, 'click', function() { // Add a Click Listener to our marker
+     infowindow.close();
+     infowindow.open(map,pMarker); // Open the InfoWindow
+    });
+
   });
 
+  console.log('localStorage', JSON.parse(localStorage.donateit));
+
+  // to get all the donors data
+  var parsedData = JSON.parse(localStorage.donateit);
+  var addressArray = [];
+  var info ={};
+  parsedData.forEach((donors) =>{
+    addressArray.push(donors.pickup_address);
+    info.address = donors.pickup_address;
+    info.category = donors.category;
+    info.desc = donors.item_description;
+  });
+
+  console.log(addressArray);
 
 
+var address;
+addressArray.forEach((currentAddress) =>{
+   address = {'address': currentAddress};
+   decodeAddress(address, info);
+});
 
+}// end initMap
 
-}
+function decodeAddress(address, info){
+
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode(address, function (results, status) {
+   var lat = results[0].geometry.location.lat();
+   var lng = results[0].geometry.location.lng();
+   var origin = new google.maps.LatLng(lat, lng);
+
+    // to check the status og
+    if (status == google.maps.GeocoderStatus.OK) {
+      console.log('in geo coder');
+      map.setCenter(results[0].geometry.location);
+        var aMarker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          position: origin,
+          animation: google.maps.Animation.DROP,
+          icon: '../img/bluedot.png'
+        });
+          var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
+            content:"<p>Address "+info.address+"<br>"+"Category: "+info.category+"</p><p>"+"Item desc: "+info.desc+"</p>" // HTML contents of the InfoWindow
+          });
+
+           google.maps.event.addListener(aMarker, 'click', function() { // Add a Click Listener to our marker
+            infowindow.open(map,aMarker); // Open the InfoWindow
+          });
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+      }
+   });
+ }
 
 function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
+  if (cMarker.getAnimation() !== null) {
+    cMarker.setAnimation(null);
   } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
+    cMarker.setAnimation(google.maps.Animation.BOUNCE);
   }
 }

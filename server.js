@@ -32,14 +32,11 @@ app.use( express.static( path.join( __dirname, 'public' )));
 
 // home page
 app.get('/', (req, res) => {
-  res.render('index')
+   res.render('index');
 });
 
-// routes go here
-// to get all the donors
-app.get('/donationlist', (req, res) => {
-  res.render('all_donors');
-});
+
+
 
 // listen for the port
 app.listen(app.get('port'), function() {
