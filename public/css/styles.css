@@ -8,7 +8,7 @@ html, body {
     #map {
       height: 100%;
     }
-#donation_form {
+#donation_form, #about_form {
   /*background-color: transparent;*/
   background:#7f7f7f;
   background:rgba(0,0,0,0.5);
@@ -39,7 +39,7 @@ html, body {
 
 }
 
-.form-horizontal{
+.form-horizontal, .about-detail {
   color:white;
   font-size: 1em;
 }

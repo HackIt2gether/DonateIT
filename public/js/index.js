@@ -2,7 +2,14 @@ $( document ).ready(function() {
     console.log( "ready!" );
 
     $('#addonations').click( function(){
-         $("#donation_form").toggle();
+      $("#about_form").hide();
+      $("#donation_form").toggle();
+    })
+
+    $('#about').click( function(e){
+        e.preventDefault();
+        $("#donation_form").hide();
+        $("#about_form").toggle();
     })
 
     $('#form-horizontal').submit((e) => {
