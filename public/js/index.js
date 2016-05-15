@@ -1,11 +1,11 @@
 'use strict'
 $(document).ready( function(){
 
+  console.log('index.js loaded!');
+
   $('#addonations').click(function(){
        $("#donation_form").toggle();
-  })
-
-  console.log('index.js loaded!');
+  });
 
   $('.form-horizontal').submit((e) => {
     e.preventDefault();
@@ -25,10 +25,10 @@ $(document).ready( function(){
     };
 
     $.post('/donations', newDonation)
-      .done((data) => {
-        // console.log('post req', data);
+      .done((newDonation) => {
+        // console.log('post req', newDonation);
       })
-      .fail( function(data) {
+      .fail( function(newDonation) {
         console.error('error!');
       });
   })
