@@ -141,8 +141,9 @@ var styles = [
         ]
     }
 ]
+var map;
 function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 40.7713451, lng: -73.9882315},
     styles: styles,
     scrollwheel: false,
@@ -233,8 +234,61 @@ function initMap() {
 
   });
 
+  console.log('localStorage', JSON.parse(localStorage.donateit));
+
+  // to get all the donors data
+  var parsedData = JSON.parse(localStorage.donateit);
+  var addressArray = [];
+  var info ={};
+  parsedData.forEach((donors) =>{
+    addressArray.push(donors.pickup_address);
+    info.address = donors.pickup_address;
+    info.category = donors.category;
+    info.desc = donors.item_description;
+  });
+
+  console.log(addressArray);
+
+
+var address;
+addressArray.forEach((currentAddress) =>{
+   address = {'address': currentAddress};
+   decodeAddress(address, info);
+});
+
 }// end initMap
 
+function decodeAddress(address, info){
+
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode(address, function (results, status) {
+   var lat = results[0].geometry.location.lat();
+   var lng = results[0].geometry.location.lng();
+   var origin = new google.maps.LatLng(lat, lng);
+
+    // to check the status og
+    if (status == google.maps.GeocoderStatus.OK) {
+      console.log('in geo coder');
+      map.setCenter(results[0].geometry.location);
+        var aMarker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          position: origin,
+          animation: google.maps.Animation.DROP,
+          icon: '../img/bluedot.png'
+        });
+          var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
+            content:"<p>Address "+info.address+"<br>"+"Category: "+info.category+"</p><p>"+"Item desc: "+info.desc+"</p>" // HTML contents of the InfoWindow
+          });
+
+           google.maps.event.addListener(aMarker, 'click', function() { // Add a Click Listener to our marker
+            infowindow.open(map,aMarker); // Open the InfoWindow
+          });
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+      }
+   });
+ }
 
 function toggleBounce() {
   if (cMarker.getAnimation() !== null) {

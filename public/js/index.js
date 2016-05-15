@@ -7,8 +7,10 @@ $(document).ready( function(){
        $("#donation_form").toggle();
   });
 
+  getdonations();
+
   $('.form-horizontal').submit((e) => {
-    e.preventDefault();
+    // e.preventDefault();
     // html elements
     let $name = $('#name').val();
     let $email = $('#email').val();
@@ -34,3 +36,15 @@ $(document).ready( function(){
   })
 
 }); // end of document load
+
+
+function getdonations(){
+ $.get('/donations')
+  .done( (data) => {
+      localStorage.clear();
+      localStorage.donateit = JSON.stringify(data);
+  })
+  .fail( () => {
+    console.error('You have failed this homework!!!!!!!!!');
+  });
+}
