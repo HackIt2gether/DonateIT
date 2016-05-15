@@ -6,7 +6,7 @@ const path = require('path');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const db = require('./db/pg');
+// const db = require('./db/pg');
 
 // routes
 // const apiRoutes = require(path.join(__dirname, '/routes/apis'));
@@ -30,12 +30,17 @@ app.use(bodyParser.json());
 app.use( express.static( path.join( __dirname, 'public' )));
 
 
-// home page
+// home page - sign up form
 app.get('/', (req, res) => {
   res.render('index')
 });
 
 // routes go here
+// to get all the donors
+app.get('/donationlist', (req, res) => {
+  res.render('all_donors');
+});
+
 
 // listen for the port
 app.listen(app.get('port'), function() {
