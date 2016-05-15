@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const db = require('./db/pg');
 
 // routes
-const apiRoutes = require(path.join(__dirname, '/routes/apis'));
+// const apiRoutes = require(path.join(__dirname, '/routes/apis'));
 
 const app = express();
 
