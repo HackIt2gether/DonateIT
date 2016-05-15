@@ -147,7 +147,7 @@ function initMap() {
     center: {lat: 40.7713451, lng: -73.9882315},
     styles: styles,
     scrollwheel: false,
-    zoom: 16
+    zoom: 12
   });
 
   // for user to find move the map center to their current location
@@ -166,7 +166,7 @@ function initMap() {
         draggable: true,
         position: currentPosition,
         animation: google.maps.Animation.DROP,
-        icon: '../img/pinkdot.png'
+        icon: '../img/yellowdot.png'
       });
       cMarker.addListener('click', toggleBounce);
     },
@@ -209,7 +209,7 @@ function initMap() {
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(17, 34),
       animation: google.maps.Animation.DROP,
-      url: '../img/bluedot.png'
+      url: '../img/reddot.png'
 
     }));
     pMarker.setPosition(place.geometry.location);
@@ -275,7 +275,7 @@ function decodeAddress(address, info){
           draggable: true,
           position: origin,
           animation: google.maps.Animation.DROP,
-          icon: '../img/bluedot.png'
+          icon: '../img/reddot.png'
         });
           var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
             content:"<p>Address "+info.address+"<br>"+"Category: "+info.category+"</p><p>"+"Item desc: "+info.desc+"</p>" // HTML contents of the InfoWindow

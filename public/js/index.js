@@ -12,15 +12,6 @@ $( document ).ready(function() {
         $("#about_form").toggle();
     })
 
-    $('#form-horizontal').submit((e) => {
-      // e.preventDefault();
-      // html elements
-      let $name = $('#name').val();
-      let $email = $('#email').val();
-      let $pickup_address = $('#pickup_address').val();
-      let $category = $('#category').val();
-      let $item_description = $('#item_description').val();
-
   getdonations();
 
   $('.form-horizontal').submit((e) => {
@@ -41,7 +32,6 @@ $( document ).ready(function() {
           console.error('error!');
         });
     })
-
 }); // end of document load
 
 
