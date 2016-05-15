@@ -22,15 +22,16 @@ html, body {
 }
 
 #about_form {
+  color: white;
   background:#7f7f7f;
-  background:rgba(0,0,0,0.8);
+  background:rgba(0,0,0,0.5);
   padding: 20px;
   display: none;
   z-index: 50;
-  width: 100%;
+  width: 50em;
   position: fixed;
   padding: 4em;
-
+  margin-left: 0px;
 }
 
 #logo {
@@ -51,9 +52,14 @@ html, body {
 
 }
 
-.form-horizontal, .about-detail {
-  color:white;
+.form-horizontal {
+  color: white;
   font-size: 1em;
+}
+
+.about-detail {
+  color: white;
+  font-size: 1.5em;
 }
 
 #singlebutton {
