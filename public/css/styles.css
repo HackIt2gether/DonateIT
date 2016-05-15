@@ -12,9 +12,11 @@ html, body {
   background-color: transparent;
   padding: 2em;
   display: none;
+  z-index: 20;
   width: 50em;
-  position: absolute;
-  z-index: 9999;
+  position: fixed;
+  padding: 2em;
+  margin-left: -350px;
 }
 
 #logo {
@@ -32,4 +34,18 @@ html, body {
 
 .nav{
 
+}
+
+.form-horizontal{
+  color:white;
+  font-size: 1em;
+}
+
+#singlebutton {
+  color:white;
+  font-size: 0.5em;
+  font-weight: bold;
+}
+
+#map{
 }
