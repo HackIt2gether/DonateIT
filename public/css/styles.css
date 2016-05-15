@@ -8,7 +8,7 @@ html, body {
     #map {
       height: 100%;
     }
-#donation_form, #about_form {
+#donation_form {
   /*background-color: transparent;*/
   background:#7f7f7f;
   background:rgba(0,0,0,0.5);
@@ -19,6 +19,19 @@ html, body {
   position: fixed;
   padding: 4em;
   margin-left: -100px;
+}
+
+#about_form {
+  color: white;
+  background:#7f7f7f;
+  background:rgba(0,0,0,0.5);
+  padding: 20px;
+  display: none;
+  z-index: 50;
+  width: 50em;
+  position: fixed;
+  padding: 4em;
+  margin-left: 0px;
 }
 
 #logo {
@@ -39,14 +52,15 @@ html, body {
 
 }
 
-.form-horizontal, .about-detail {
+.form-horizontal {
   color: white;
   font-size: 1em;
 }
 
-/*.about-detail {
-  padding: 10px;
-}*/
+.about-detail {
+  color: white;
+  font-size: 1.5em;
+}
 
 #singlebutton {
   color:white;

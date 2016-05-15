@@ -12,7 +12,7 @@ donations.post('/', db.addDonation, (req, res) => {
 });
 
 donations.get('/', db.allDonations, (req, res) => {
-  res.render('all_donations')
+  res.send(res.rows);
 });
 
 module.exports = donations;
