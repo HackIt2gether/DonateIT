@@ -40,9 +40,13 @@ html, body {
 }
 
 .form-horizontal, .about-detail {
-  color:white;
+  color: white;
   font-size: 1em;
 }
+
+/*.about-detail {
+  padding: 10px;
+}*/
 
 #singlebutton {
   color:white;
