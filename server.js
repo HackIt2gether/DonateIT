@@ -6,7 +6,7 @@ const path = require('path');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const db = require('./db/pg');
+const db = require('./db/db_donors');
 
 // routes
 // const apiRoutes = require(path.join(__dirname, '/routes/apis'));
