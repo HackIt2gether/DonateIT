@@ -10,7 +10,7 @@ const db = pgp(cn);
 
 function addDonation(req, res, next) {
   db.one(`INSERT INTO donors (name, email, pickup_address, category, item_description)
-  VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+  VALUES ($1, $2, $3, $4, $5)`,
     [req.body.name, req.body.email, req.body.pickup_address, req.body.category, req.body.item_description])
     .then(function(data) {
       console.log(data);
@@ -22,4 +22,16 @@ function addDonation(req, res, next) {
     });
 };
 
+function allDonations(req, res, next) {
+  db.any(`SELECT * from donors`)
+    .then(function(data) {
+      res.rows = data;
+      next();
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+};
+
+module.exports.allDonations = allDonations;
 module.exports.addDonation = addDonation;

@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const db = require('./db/db_donors');
 
 // routes
-const apiRoutes = require(path.join(__dirname, '/routes/donations'));
+const donationsRoutes = require(path.join(__dirname, '/routes/donations'));
 
 const app = express();
 
@@ -22,6 +22,10 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+// routes
+app.use('/donations', donationsRoutes )
+
 
 // set public path
 app.use( express.static( path.join( __dirname, 'public' )));
@@ -37,12 +41,6 @@ app.get('/', (req, res) => {
 app.get('/donationlist', (req, res) => {
   res.render('all_donors');
 });
-
-// add a donation but keep on the same page
-app.post('/donations', (req, res) => {
-  res.redirect('/');
-});
-
 
 // listen for the port
 app.listen(app.get('port'), function() {

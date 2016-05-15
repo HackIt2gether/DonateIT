@@ -11,4 +11,8 @@ donations.post('/', db.addDonation, (req, res) => {
   res.redirect('/');
 });
 
+donations.get('/', db.allDonations, (req, res) => {
+  res.render('all_donations')
+});
+
 module.exports = donations;
