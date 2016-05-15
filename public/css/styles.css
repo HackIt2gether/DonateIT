@@ -14,7 +14,7 @@ html, body {
   display: none;
   z-index: 50;
   width: 50em;
-  position: fixed;
+  position: absolute;
   padding: 2em;
   margin-left: -50px;
 }
