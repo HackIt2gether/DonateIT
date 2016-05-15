@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const db = require('./db/db_donors');
 
 // routes
-// const apiRoutes = require(path.join(__dirname, '/routes/apis'));
+const apiRoutes = require(path.join(__dirname, '/routes/donations'));
 
 const app = express();
 
@@ -20,9 +20,6 @@ app.set('view engine', 'ejs');
 
 app.set('port', process.env.PORT || 3000);
 
-var pg = require('pg');
-
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
@@ -30,7 +27,7 @@ app.use(bodyParser.json());
 app.use( express.static( path.join( __dirname, 'public' )));
 
 
-// home page - sign up form
+// home page
 app.get('/', (req, res) => {
   res.render('index')
 });
@@ -39,6 +36,11 @@ app.get('/', (req, res) => {
 // to get all the donors
 app.get('/donationlist', (req, res) => {
   res.render('all_donors');
+});
+
+// add a donation but keep on the same page
+app.post('/donations', (req, res) => {
+  res.redirect('/');
 });
 
 
