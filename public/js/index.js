@@ -1,5 +1,6 @@
 $( document ).ready(function() {
     console.log( "ready!" );
+
     $('#addonations').click( function(){
          $("#donation_form").toggle();
     })
@@ -24,6 +25,7 @@ $( document ).ready(function() {
       $.post('/donations', newDonation)
         .done((data) => {
           // console.log('post req', data);
+          // window.location.href = res.redirect;
         })
         .fail( function(data) {
           console.error('error!');
