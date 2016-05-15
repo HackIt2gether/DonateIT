@@ -123,9 +123,12 @@ var styles = [
         "featureType": "transit.line",
         "elementType": "all",
         "stylers": [
-            {
-                "color": "#146474"
-            }
+          {
+              "color": "#0b3d51"
+          },
+          {
+              "lightness": 16
+          }
         ]
     },
     {
@@ -145,6 +148,10 @@ function initMap() {
     scrollwheel: false,
     zoom: 16
   });
+
+  // for user to find move the map center to their current location
+  var geoloccontrol = new klokantech.GeolocationControl(map, 16);
+
   // If user allows geolocation
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -152,14 +159,13 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      console.log(currentPosition);
       map.setCenter(currentPosition)
-      marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({
         map: map,
         draggable: true,
         position: currentPosition,
         animation: google.maps.Animation.DROP,
-        // icon: 'https://www.google.com/support/enterprise/static/geo/cdate/art/dots/blue_dot.png'
+        icon: '../img/pinkdot.png'
       });
       marker.addListener('click', toggleBounce);
     },
@@ -170,6 +176,61 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, marker, map.getCenter());
   }
+
+
+  // address autocomplete for pick up address
+  var input = document.getElementById('pickup_address');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
+
+  var marker = new google.maps.Marker({
+    map: map,
+    anchorPoint: new google.maps.Point(0, -29)
+  });
+  var infowindow = new google.maps.InfoWindow();
+  autocomplete.addListener('place_changed', function() {
+    infowindow.close();
+    marker.setVisible(false);
+    var place = autocomplete.getPlace();
+    if (!place.geometry) {
+      window.alert("Autocomplete's returned place contains no geometry");
+      return;
+    }
+
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);  // Why 17? Because it looks good.
+    }
+    marker.setIcon(/** @type {google.maps.Icon} */({
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      animation: google.maps.Animation.DROP,
+      url: '../img/bluedot.png'
+
+    }));
+    marker.setPosition(place.geometry.location);
+    marker.setVisible(true);
+
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    infowindow.open(map, marker);
+  });
+
+
+
+
+
 }
 
 function toggleBounce() {
