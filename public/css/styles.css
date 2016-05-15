@@ -10,23 +10,24 @@ html, body {
     }
 #donation_form {
   background-color: transparent;
-  padding: 2em;
+  padding: 20px;
   display: none;
   z-index: 50;
   width: 50em;
-  position: absolute;
-  padding: 2em;
-  margin-left: -50px;
+  position: fixed;
+  padding: 4em;
+  margin-left: -275px;
 }
 
 #logo {
-  font-size: 40px;
+  font-size: 36px;
+  text-decoration: none;
   color: orange;
   font-family: Aclonica;
 }
 
 .menu_item a{
-  font-size: 20px;
+  font-size: 15px;
   text-decoration: none;
   color: orange;
   font-family: Aclonica;
@@ -48,4 +49,9 @@ html, body {
 }
 
 #map{
+}
+
+#welcome{
+  height: 200px;
+  display: none;
 }
