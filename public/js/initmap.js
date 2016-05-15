@@ -160,14 +160,14 @@ function initMap() {
         lng: position.coords.longitude
       };
       map.setCenter(currentPosition)
-      var marker = new google.maps.Marker({
+        cMarker = new google.maps.Marker({
         map: map,
         draggable: true,
         position: currentPosition,
         animation: google.maps.Animation.DROP,
         icon: '../img/pinkdot.png'
       });
-      marker.addListener('click', toggleBounce);
+      cMarker.addListener('click', toggleBounce);
     },
     function() {
       handleLocationError(true, marker, map.getCenter());
@@ -175,7 +175,7 @@ function initMap() {
   }else {
     // Browser doesn't support Geolocation
     handleLocationError(false, marker, map.getCenter());
-  }
+  } // end navigator geolocation
 
 
   // address autocomplete for pick up address
@@ -183,14 +183,14 @@ function initMap() {
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
 
-  var marker = new google.maps.Marker({
+  var pMarker = new google.maps.Marker({
     map: map,
     anchorPoint: new google.maps.Point(0, -29)
   });
   var infowindow = new google.maps.InfoWindow();
   autocomplete.addListener('place_changed', function() {
     infowindow.close();
-    marker.setVisible(false);
+    pMarker.setVisible(false);
     var place = autocomplete.getPlace();
     if (!place.geometry) {
       window.alert("Autocomplete's returned place contains no geometry");
@@ -204,15 +204,15 @@ function initMap() {
       map.setCenter(place.geometry.location);
       map.setZoom(17);  // Why 17? Because it looks good.
     }
-    marker.setIcon(/** @type {google.maps.Icon} */({
+    pMarker.setIcon(/** @type {google.maps.Icon} */({
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(17, 34),
       animation: google.maps.Animation.DROP,
       url: '../img/bluedot.png'
 
     }));
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
+    pMarker.setPosition(place.geometry.location);
+    pMarker.setVisible(true);
 
     var address = '';
     if (place.address_components) {
@@ -224,19 +224,22 @@ function initMap() {
     }
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-    infowindow.open(map, marker);
+    infowindow.open(map, pMarker);
+
+    google.maps.event.addListener(pMarker, 'click', function() { // Add a Click Listener to our marker
+     infowindow.close();
+     infowindow.open(map,pMarker); // Open the InfoWindow
+    });
+
   });
 
+}// end initMap
 
-
-
-
-}
 
 function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
+  if (cMarker.getAnimation() !== null) {
+    cMarker.setAnimation(null);
   } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
+    cMarker.setAnimation(google.maps.Animation.BOUNCE);
   }
 }
