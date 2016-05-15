@@ -12,11 +12,11 @@ html, body {
   background-color: transparent;
   padding: 2em;
   display: none;
-  z-index: 20;
+  z-index: 50;
   width: 50em;
   position: fixed;
   padding: 2em;
-  margin-left: -350px;
+  margin-left: -50px;
 }
 
 #logo {
@@ -43,7 +43,7 @@ html, body {
 
 #singlebutton {
   color:white;
-  font-size: 0.5em;
+  font-size: 1em;
   font-weight: bold;
 }
 

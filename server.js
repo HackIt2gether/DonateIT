@@ -23,8 +23,10 @@ app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+// routes
+app.use('/donations', donationRoutes )
+
 // set public path
-app.use('/donations', donationRoutes);
 app.use( express.static( path.join( __dirname, 'public' )));
 
 
@@ -38,7 +40,6 @@ app.get('/', (req, res) => {
 app.get('/donationlist', (req, res) => {
   res.render('all_donors');
 });
-
 
 // listen for the port
 app.listen(app.get('port'), function() {
