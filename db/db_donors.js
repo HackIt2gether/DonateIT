@@ -7,5 +7,4 @@ const pgp = require('pg-promise')({
 
 const cn = process.env.DATABASE_URL;
 const db = pgp(cn);
-const session = require('express-session');
 const bodyParser = require('body-parser');
