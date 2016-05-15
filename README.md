@@ -2,8 +2,17 @@
 Hack it together one day project.
 
 # Mission Statement
+ DonateIT is a platform that allows users to set up their donations at a pick up location for charities to pick up. It allows people to make donations easily without getting into the hassle of actually going to the charity. Perfect for lazy people who still want to contribute to the society
 
- DonateIT is a platform that matches donators with charities
+# Technologies Used
+ * HTML/CSS
+ * JavaScript
+ * Node.js
+ * Express.js
+ * Postgres/SQL
+ * Google Maps and Places API
+ * node modules -pg,body-parser,dotenv,morgan,,pg-promise,path
+
 
 # User Stories
 -  As a user, I should be able to see a welcome page
