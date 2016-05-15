@@ -12,17 +12,24 @@ html, body {
   background-color: transparent;
   padding: 2em;
   display: none;
+  width: 50em;
+  position: absolute;
+  z-index: 9999;
 }
 
 #logo {
-  font-size: 36px;
+  font-size: 40px;
   color: orange;
   font-family: Aclonica;
 }
 
-.menu_item {
+.menu_item a{
   font-size: 20px;
   text-decoration: none;
   color: orange;
   font-family: Aclonica;
+}
+
+.nav{
+
 }
