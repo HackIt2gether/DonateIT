@@ -4,6 +4,7 @@ require('dotenv').config();
 const pgp = require('pg-promise')({
     // Initialization Options
 });
+<<<<<<< HEAD
 
 const cn = process.env.DATABASE_URL;
 const db = pgp(cn);

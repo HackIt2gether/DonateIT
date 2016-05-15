@@ -4,7 +4,22 @@ html, body {
       padding: 0;
     }
 
-
     #map {
       height: 100%;
     }
+#donation_form {
+  background-color: black;
+  padding: 2em;
+}
+
+#logo {
+  font-size: 36px;
+  color: orange;
+  font-family: Aclonica;
+}
+
+.menu_item {
+  font-size: 20px;
+  color: orange;
+  font-family: Aclonica;
+}
