@@ -6,10 +6,10 @@ const path = require('path');
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const db = require('./db/pg');
+const db = require('./db/db_donors');
 
 // routes
-// const apiRoutes = require(path.join(__dirname, '/routes/apis'));
+const donationRoutes = require(path.join(__dirname, '/routes/donations'));
 
 const app = express();
 
@@ -20,26 +20,22 @@ app.set('view engine', 'ejs');
 
 app.set('port', process.env.PORT || 3000);
 
-var pg = require('pg');
-
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+// routes
+app.use('/donations', donationRoutes )
 
 // set public path
 app.use( express.static( path.join( __dirname, 'public' )));
 
 
-// home page - sign up form
+// home page
 app.get('/', (req, res) => {
-  res.render('index')
+   res.render('index');
 });
 
-// routes go here
-// to get all the donors
-app.get('/donationlist', (req, res) => {
-  res.render('all_donors');
-});
+
 
 
 // listen for the port
