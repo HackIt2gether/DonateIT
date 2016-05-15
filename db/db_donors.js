@@ -23,7 +23,6 @@ function addDonation(req, res, next) {
 };
 
 function allDonations(req, res, next) {
-<<<<<<< HEAD
   db.any(`SELECT * from donors`)
     .then(function(data) {
       res.rows = data;
@@ -32,16 +31,6 @@ function allDonations(req, res, next) {
     .catch(function(error) {
       console.error(error);
     });
-=======
- db.any(`SELECT * from donors`)
-   .then(function(data) {
-     res.rows = data;
-     next();
-   })
-   .catch(function(error) {
-     console.error(error);
-   });
->>>>>>> f43253dd0bbc6c39ecdf25161702f5210d952e6f
 };
 
 module.exports.allDonations = allDonations;
