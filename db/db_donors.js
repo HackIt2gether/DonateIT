@@ -23,14 +23,14 @@ function addDonation(req, res, next) {
 };
 
 function allDonations(req, res, next) {
-  db.any(`SELECT * from donors`)
-    .then(function(data) {
-      res.rows = data;
-      next();
-    })
-    .catch(function(error) {
-      console.error(error);
-    });
+ db.any(`SELECT * from donors`)
+   .then(function(data) {
+     res.rows = data;
+     next();
+   })
+   .catch(function(error) {
+     console.error(error);
+   });
 };
 
 module.exports.allDonations = allDonations;

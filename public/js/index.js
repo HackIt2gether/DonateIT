@@ -1,5 +1,8 @@
 $( document ).ready(function() {
     console.log( "ready!" );
+
+    getdonations();
+
     $('#addonations').click( function(){
       $("#about_form").hide();
       $("#donation_form").toggle();
@@ -38,3 +41,15 @@ $( document ).ready(function() {
     })
 
 }); // end of document load
+
+
+function getdonations(){
+ $.get('/donations')
+  .done( (data) => {
+      localStorage.clear();
+      localStorage.donateit = JSON.stringify(data);
+  })
+  .fail( () => {
+    console.error('You have failed this homework!!!!!!!!!');
+  });
+}
