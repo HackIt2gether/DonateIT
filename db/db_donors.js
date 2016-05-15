@@ -1,11 +1,11 @@
+'use strict'
 
 require('dotenv').config();
-var pg = require('pg');
-// if(process.env.ENVIRONMENT === 'production'){     // in heroku: add environment = production in config variables
-//   var connectionString = process.env.DATABASE_URL;
-// } else {                                          // in local
-//   var connectionString = " ";
-// }
+const pgp = require('pg-promise')({
+    // Initialization Options
+});
 
-var bodyParser = require('body-parser');
-var session = require('express-session');
+const cn = process.env.DATABASE_URL;
+const db = pgp(cn);
+const session = require('express-session');
+const bodyParser = require('body-parser');
