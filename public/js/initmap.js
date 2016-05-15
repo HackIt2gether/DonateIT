@@ -120,12 +120,15 @@ var styles = [
         ]
     },
     {
-        "featureType": "transit",
+        "featureType": "transit.line",
         "elementType": "all",
         "stylers": [
-            {
-                "color": "#146474"
-            }
+          {
+              "color": "#0b3d51"
+          },
+          {
+              "lightness": 16
+          }
         ]
     },
     {
@@ -145,6 +148,10 @@ function initMap() {
     scrollwheel: false,
     zoom: 16
   });
+
+  // for user to find move the map center to their current location
+  var geoloccontrol = new klokantech.GeolocationControl(map, 16);
+
   // If user allows geolocation
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -152,14 +159,13 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      console.log(currentPosition);
       map.setCenter(currentPosition)
       marker = new google.maps.Marker({
         map: map,
         draggable: true,
         position: currentPosition,
         animation: google.maps.Animation.DROP,
-        // icon: 'https://www.google.com/support/enterprise/static/geo/cdate/art/dots/blue_dot.png'
+        icon: '../img/bluedot.png'
       });
       marker.addListener('click', toggleBounce);
     },
