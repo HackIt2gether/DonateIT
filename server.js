@@ -30,13 +30,14 @@ app.use( express.static( path.join( __dirname, 'public' )));
 
 // home page
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('index');
 });
 
 // routes go here
 // to get all the donors
-app.get('/donationlist', (req, res) => {
-  res.render('all_donors');
+app.get('/alldonations', (req, res) => {
+  console.log('in get');
+  res.render('all_donations');
 });
 
 
