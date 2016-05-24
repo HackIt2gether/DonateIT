@@ -1,5 +1,6 @@
 # DonateIT
 Hack it together one day project.
+App is live at: https://donateit.herokuapp.com/
 
 # Mission Statement
  DonateIT is a platform that allows users to set up their donations at a pick up location for charities to pick up. It allows people to make donations easily without getting into the hassle of actually going to the charity. Perfect for lazy people who still want to contribute to the society
