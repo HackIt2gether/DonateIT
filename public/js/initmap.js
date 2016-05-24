@@ -234,39 +234,42 @@ function initMap() {
 
   });
 
-  console.log('localStorage', JSON.parse(localStorage.donateit));
+  // console.log('localStorage', JSON.parse(localStorage.donateit));
 
   // to get all the donors data
   var parsedData = JSON.parse(localStorage.donateit);
-  var addressArray = [];
-  var info ={};
+  var donorsArray = [];
+  var info = {};
+
+  // get all the donor info from the database
   parsedData.forEach((donors) =>{
-    addressArray.push(donors.pickup_address);
-    info.address = donors.pickup_address;
-    info.category = donors.category;
-    info.desc = donors.item_description;
+    donorsArray.push({
+      donor_id: donors.donor_id,
+      address: donors.pickup_address,
+      category: donors.category,
+      desc: donors.item_description
+    });
   });
 
-  console.log(addressArray);
-
+// console.log(donorsArray);
 
 var address;
-addressArray.forEach((currentAddress) =>{
-   address = {'address': currentAddress};
-   decodeAddress(address, info);
+donorsArray.forEach((donorinfo) =>{
+  decodeAddress(donorinfo);
+
 });
 
 }// end initMap
 
-function decodeAddress(address, info){
-
+function decodeAddress(donorinfo){
+  address = {'address': donorinfo.address};
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode(address, function (results, status) {
    var lat = results[0].geometry.location.lat();
    var lng = results[0].geometry.location.lng();
    var origin = new google.maps.LatLng(lat, lng);
 
-    // to check the status 
+    // to check the status
     if (status == google.maps.GeocoderStatus.OK) {
       console.log('in geo coder');
       map.setCenter(results[0].geometry.location);
@@ -277,8 +280,9 @@ function decodeAddress(address, info){
           animation: google.maps.Animation.DROP,
           icon: '../img/reddot.png'
         });
+
           var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
-            content:"<p>Address "+info.address+"<br>"+"Category: "+info.category+"</p><p>"+"Item desc: "+info.desc+"</p>" // HTML contents of the InfoWindow
+            content:"<p>Address "+donorinfo.address+"<br>"+"Category: "+donorinfo.category+"</p><p>"+"Item desc: "+donorinfo.desc+"</p>" // HTML contents of the InfoWindow
           });
 
            google.maps.event.addListener(aMarker, 'click', function() { // Add a Click Listener to our marker
