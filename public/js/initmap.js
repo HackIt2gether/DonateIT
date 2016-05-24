@@ -234,12 +234,10 @@ function initMap() {
 
   });
 
-  // console.log('localStorage', JSON.parse(localStorage.donateit));
 
   // to get all the donors data
   var parsedData = JSON.parse(localStorage.donateit);
   var donorsArray = [];
-  var info = {};
 
   // get all the donor info from the database
   parsedData.forEach((donors) =>{
@@ -247,16 +245,15 @@ function initMap() {
       donor_id: donors.donor_id,
       address: donors.pickup_address,
       category: donors.category,
-      desc: donors.item_description
+      desc: donors.item_description,
+      name: donors.name,
+      email: donors.email
     });
   });
-
-// console.log(donorsArray);
 
 var address;
 donorsArray.forEach((donorinfo) =>{
   decodeAddress(donorinfo);
-
 });
 
 }// end initMap
@@ -282,7 +279,7 @@ function decodeAddress(donorinfo){
         });
 
           var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
-            content:"<p>Address "+donorinfo.address+"<br>"+"Category: "+donorinfo.category+"</p><p>"+"Item desc: "+donorinfo.desc+"</p>" // HTML contents of the InfoWindow
+            content:"<p>Name: "+donorinfo.name+" Email: "+donorinfo.email+"<br>"+"Address "+donorinfo.address+"<br>"+"Category: "+donorinfo.category+"</p><p>"+"Item desc: "+donorinfo.desc+"</p>" // HTML contents of the InfoWindow
           });
 
            google.maps.event.addListener(aMarker, 'click', function() { // Add a Click Listener to our marker
