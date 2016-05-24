@@ -266,7 +266,7 @@ function decodeAddress(address, info){
    var lng = results[0].geometry.location.lng();
    var origin = new google.maps.LatLng(lat, lng);
 
-    // to check the status og
+    // to check the status 
     if (status == google.maps.GeocoderStatus.OK) {
       console.log('in geo coder');
       map.setCenter(results[0].geometry.location);
