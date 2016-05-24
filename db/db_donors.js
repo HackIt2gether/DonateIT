@@ -5,7 +5,20 @@ const pgp = require('pg-promise')({
     // Initialization Options
 });
 
-const cn = process.env.DATABASE_URL;
+
+if(process.env.ENVIRONMENT === 'production') {
+  var cn = process.env.DATABASE_URL
+} else {
+  var cn =
+  {
+    host: process.env.DB_HOST,
+    port: 5432,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS
+  };
+}
+
 const db = pgp(cn);
 
 function addDonation(req, res, next) {
